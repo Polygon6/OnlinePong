@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pong</title>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+
+	<div id="left" > <p>Hits: 0</p>  <p>Misses:0</p> </div>
+	<div id="right"> <p>Misses:0</p> <p>Hits: 0</p>  </div>
+	<div id="scoreboard"> <p>0</p> <p>0</p> </div>
+
+	<div id="menuO">
+		<div id="menu">
+			<div class="menucontent" id="menudisplay">
+				<p id="speed_display">Speed: Slow</p>
+				<p id="pongballs_display">Pongballs: 1</p>
+			</div>
+			<div class="menucontent" id="menuC">
+				<!-- the dark grey color used by the images is #999, the font color is defult and the font is defult on the pongballs and monospace on speeds,
+				the background is #DDD -->
+				<div class="menubuttonCL"> <img class="menuicon" src="images/slow_speed_icon.png"/>   <div class="menuCB-overlay" ></div> </div>
+				<div class="menubuttonCL"> <img class="menuicon" src="images/normal_speed_icon.png"/> <div class="menuCB-overlay" ></div> </div>
+				<div class="menubuttonCL"> <img class="menuicon" src="images/fast_speed_icon.png"/>   <div class="menuCB-overlay" ></div> </div>
+				<div class="menubuttonCL"> <img class="menuicon" src="images/Expert_speed_icon.png"/> <div class="menuCB-overlay" ></div> </div>
+				<div class="menubuttonCR"> <img class="menuicon" src="images/1_pongball_icon.png"/>   <div class="menuCB-overlay" ></div> </div>
+				<div class="menubuttonCR"> <img class="menuicon" src="images/2_pongballs_icon.png"/>  <div class="menuCB-overlay" ></div> </div>
+				<div class="menubuttonCR"> <img class="menuicon" src="images/3_pongballs_icon.png"/>  <div class="menuCB-overlay" ></div> </div>
+				<div class="menubuttonCR"> <img class="menuicon" src="images/4_pongballs_icon.png"/>  <div class="menuCB-overlay" ></div> </div>
+			</div>
+
+			<!-- the font is Myriad bold or something -->
+			<div id="menuR">
+				<div class="menucontent">
+					<p class="playertag"> Right Player </p>
+					<div class='sidepanelC1'> <img class="menusideicon" src="images/movement_cost_icon.png"/>     <div class="menuSB-overlay" ></div> </div>
+					<div class='sidepanelC1'> <img class="menusideicon" src="images/large_pongballs_icon.png"/>   <div class="menuSB-overlay" ></div> </div>
+					<div class='sidepanelC1'> <img class="menusideicon" src="images/large_pongpads_icon.png"/>    <div class="menuSB-overlay" ></div> </div>
+					<div class='sidepanelC2'> <img class="menusideicon" src="images/classic_deflects_icon.png"/>  <div class="menuSB-overlay" ></div> </div>
+					<div class='sidepanelC2'> <img class="menusideicon" src="images/preserve_angle_icon.png"/>    <div class="menuSB-overlay" ></div> </div>
+					<div class='sidepanelC2'> <img class="menusideicon" src="images/barriers_icon.png"/>          <div class="menuSB-overlay" ></div> </div>
+				</div>
+			</div>
+			<div id="menuL">
+				<div class="menucontent">
+					<p class="playertag"> Left Player </p>
+					<div class='sidepanelC1'> <img class="menusideicon" src="images/AI_icon.png"/>                <div class="menuSB-overlay" ></div> </div>
+					<div class='sidepanelC1'> <img class="menusideicon" src="images/WS_UH_control_icon.png"/>     <div class="menuSB-overlay" ></div> </div>
+					<div class='sidepanelC1'> <img class="menusideicon" src="images/hit_miss_counters_icon.png"/> <div class="menuSB-overlay" ></div> </div>
+					<div class='sidepanelC2'> <img class="menusideicon" src="images/classic_respawn_icon.png"/>   <div class="menuSB-overlay" ></div> </div>
+					<div class='sidepanelC2'> <img class="menusideicon" src="images/score_from_hits_icon.png"/>   <div class="menuSB-overlay" ></div> </div>
+					<div class='sidepanelC2'> <img class="menusideicon" src="images/score_icon.png"/>             <div class="menuSB-overlay" ></div> </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="highscores">
+		<p id="highscore-title"> -- Highscores -- </p>
+
+		<div id="L-highscore">
+			<p>0</p>
+			<p>0</p>
+			<p>0</p>
+		</div>
+		<div id="R-highscore">
+			<p>0</p>
+			<p>0</p>
+			<p>0</p>
+		</div>
+
+		<div id="HighscoreCatagory">
+			<p>Highest Score</p>
+			<p>Best Win Margin</p>
+			<p>Most Hits</p>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="script.js"></script>
+</body>
+</html>

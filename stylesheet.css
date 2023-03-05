@@ -1,0 +1,256 @@
+body{
+	margin-left: 0px;
+	margin-top: 0px;
+}
+canvas{
+	border: 1px solid black;
+	position: fixed;
+	left: 25%;
+	z-index: 1;
+}
+p{
+	font-family: monospace;
+}
+#highscores{
+	background-color: #EEE;
+	border-radius: 5px;
+	position: fixed;
+	left: 25%;
+	width: 50%;
+	height: 145px;
+}
+#L-highscore{
+	position: absolute;
+	width: 20%;
+	left: 10%;
+	top: 30px;
+	text-align: center;
+	background-color: #999;
+}
+#R-highscore{
+	position: absolute;
+	width: 20%;
+	right: 10%;
+	top: 30px;
+	text-align: center;
+	background-color: #999;
+}
+#HighscoreCatagory{
+	position: absolute;
+	top: 30px;
+	left: 35%;
+	width: 30%;
+	text-align: center;
+	background-color: #999;
+}
+#highscore-title{
+	margin-top: 5px;
+	position: absolute;
+	top: 0px;
+	height: 30px;
+	width: 100%;
+	font-size: 20px;
+	text-align: center;
+}
+#scoreboard{
+	position: absolute;
+	left: 40%;
+	width: 20%;
+	z-index: 2;
+}
+#scoreboard  :first-child{
+	position: absolute;
+	left: 65%;
+	top: -5px;
+}
+#scoreboard  :last-child{
+	position: absolute;
+	right: 65%;
+	top: -5px;
+}
+#left{
+	position: absolute;
+	left: 25%;
+	width: 15%;
+	z-index: 2;
+}
+#right{
+	position: absolute;
+	left: 60%;
+	width: 15%;
+	z-index: 2;
+}
+#left  :first-child{
+	position: absolute;
+	left: 15px;
+	top: 0px;
+}
+#right :first-child{
+	position: absolute;
+	right: 15px;
+	top: 0px;
+}
+#left  :last-child{
+	position: absolute;
+	left: 115px;
+	top: 0px;
+}
+#right :last-child{
+	position: absolute;
+	right: 115px;
+	top: 0px;
+}
+#menuO{
+	position: fixed;
+	background-color: #EEE;
+	width: 10%;
+	left: 45%;
+	border-radius: 0px 0px 20px 20px;
+	z-index: 2;
+}
+#menu{
+	background-color: #EEE;
+	position: relative;
+	z-index: 2;
+	border-radius: 20px 20px 0px 0px;
+	top: 0px;
+}
+#menuC{
+	position: absolute;
+	top: 20px;
+}
+.menucontent{
+	width: 100%;
+	height: 100%;
+}
+.menubuttonCL{
+	position: absolute;
+	left: 5%;
+	width: 42.5%;
+	height: 20%;
+	background-color: #DDD;
+	transition: border-radius 0.3s linear, left 0.1s linear, width 0.1s linear;
+}
+.menubuttonCR{
+	position: absolute;
+	right: 5%;
+	width: 42.5%;
+	height: 20%;
+	background-color: #DDD;
+	transition: border-radius 0.3s linear, right 0.1s linear, width 0.1s linear;
+}
+.menubuttonCL:hover{
+	border-radius: 6px;
+}
+.menubuttonCR:hover{
+	border-radius: 6px;
+}
+.menubuttonCL:active{
+	left: 3%;
+	width: 46.5%;
+}
+.menubuttonCR:active{
+	right: 3%;
+	width: 46.5%;
+}
+#menuL{
+	background-color: #DDD;
+	position: absolute;
+	right: 100%;
+	top: 20px;
+	border-radius: 20px 0px 0px 20px;
+}
+#menuR{
+	background-color: #DDD;
+	position: absolute;
+	left: 100%;
+	top: 20px;
+	border-radius: 0px 20px 20px 0px;
+}
+.menuCB-overlay{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	background-color: rgb(200,150,30);
+	opacity: 0%;
+	transition: opacity 0.3s linear, border-radius 0.3s linear;
+}
+.menuCB-overlay:hover{
+	opacity: 60%;
+	border-radius: 6px;
+}
+.menuSB-overlay{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	background-color: rgb(200,150,30);
+	opacity: 0%;
+	border-radius: inherit;
+	transition: opacity 0.3s linear, border-radius 0.1s linear;
+}
+.menuSB-overlay:active{
+	border-radius: 12px;
+}
+.menuSB-overlay:hover{
+	opacity: 60%;
+}
+.menuicon{
+	position: absolute;
+	width: 100%;
+}
+.menusideicon{
+	position: absolute;
+	height: 100%;
+}
+.sidepanelC1{
+	position: absolute;
+	bottom: 26%;
+	height: 20%;
+	width: 30%;
+	background-color: #EEE;
+	transition: border-radius 0.3s linear;
+}
+.sidepanelC2{
+	position: absolute;
+	bottom: 3%;
+	height: 20%;
+	width: 30%;
+	background-color: #EEE;
+	transition: border-radius 0.3s linear;
+}
+.sidepanelC1:active{
+	border-radius: 12px;
+}
+.sidepanelC2:active{
+	border-radius: 12px;
+}
+.playertag{
+	position: absolute;
+	top: 8%;
+	width: 30%;
+	left: 35%;
+	font-family: sans-serif;
+	text-align: center;
+	border-radius: 5px;
+	background: linear-gradient(to left top, #6c798a, #9fa7b4, #e2e4e7);
+}
+#menudisplay{
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	height: 20px;
+}
+#speed_display{
+	position: absolute;
+	top: 0px;
+	right: 52.5%;
+	font-family: sans-serif;
+}
+#pongballs_display{
+	position: absolute;
+	top: 0px;
+	left: 52.5%;
+	font-family: sans-serif;
+}
