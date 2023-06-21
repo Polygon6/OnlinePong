@@ -7,8 +7,8 @@
 <body>
 	<canvas id="canvas"></canvas>
 
-	<div id="left" > <p>Hits: 0</p>  <p>Misses:0</p> </div>
-	<div id="right"> <p>Misses:0</p> <p>Hits: 0</p>  </div>
+	<div id="left" > <p>Hits: 0.0</p> <p>Misses: 0.0</p> </div>
+	<div id="right"> <p>Misses: 0.0</p> <p>Hits: 0.0</p> </div>
 	<div id="scoreboard"> <p>0</p> <p>0</p> </div>
 
 	<div id="menuO">
@@ -33,7 +33,19 @@
 			<!-- the font is Myriad bold or something -->
 			<div id="menuR">
 				<div class="menucontent">
+					<div class="endgamecounters">
+						<p>Hits: 0</p>
+						<p>Misses: 0</p>
+						<p>Movement Cost: 0</p>
+					</div>
+
 					<p class="playertag"> Right Player </p>
+					<p id="Rscoredisplay"> 0 </p>
+					<p class="scoredifferencedisplay"> +0 </p>
+
+					<div class='optionpreset'> <div class="optionpresetoverlay"></div> <img class="preset_icon" src="images/setting_preset_challenge_icon.png"/> </div>
+					<div class='optionpreset'> <div class="optionpresetoverlay"></div> <img class="preset_icon" src="images/setting_preset_chaos_icon.png"/>     </div>
+
 					<div class='sidepanelC1'> <img class="menusideicon" src="images/movement_cost_icon.png"/>     <div class="menuSB-overlay" ></div> </div>
 					<div class='sidepanelC1'> <img class="menusideicon" src="images/large_pongballs_icon.png"/>   <div class="menuSB-overlay" ></div> </div>
 					<div class='sidepanelC1'> <img class="menusideicon" src="images/large_pongpads_icon.png"/>    <div class="menuSB-overlay" ></div> </div>
@@ -44,7 +56,19 @@
 			</div>
 			<div id="menuL">
 				<div class="menucontent">
+					<div class="endgamecounters">
+						<p>Hits: 0</p>
+						<p>Misses: 0</p>
+						<p>Movement Cost: 0</p>
+					</div>
+
 					<p class="playertag"> Left Player </p>
+					<p id="Lscoredisplay"> 0 </p>
+					<p class="scoredifferencedisplay"> +0 </p>
+
+					<div class='optionpreset'> <div class="optionpresetoverlay"></div> <img class="preset_icon" src="images/setting_preset_plain_icon.png"/>     </div>
+					<div class='optionpreset'> <div class="optionpresetoverlay"></div> <img class="preset_icon" src="images/setting_preset_classic_icon.png"/>   </div>
+
 					<div class='sidepanelC1'> <img class="menusideicon" src="images/AI_icon.png"/>                <div class="menuSB-overlay" ></div> </div>
 					<div class='sidepanelC1'> <img class="menusideicon" src="images/WS_UH_control_icon.png"/>     <div class="menuSB-overlay" ></div> </div>
 					<div class='sidepanelC1'> <img class="menusideicon" src="images/hit_miss_counters_icon.png"/> <div class="menuSB-overlay" ></div> </div>
@@ -57,24 +81,26 @@
 	</div>
 
 	<div id="highscores">
-		<p id="highscore-title"> -- Highscores -- </p>
+			<p id="highscore-title"> -- Highscores -- </p>
 
-		<div id="L-highscore">
-			<p>0</p>
-			<p>0</p>
-			<p>0</p>
-		</div>
-		<div id="R-highscore">
-			<p>0</p>
-			<p>0</p>
-			<p>0</p>
-		</div>
+			<div id="L-highscore">
+				<p>0</p>
+				<p>0</p>
+				<p>0</p>
+			</div>
+			<div id="R-highscore">
+				<p>0</p>
+				<p>0</p>
+				<p>0</p>
+			</div>
 
-		<div id="HighscoreCatagory">
-			<p>Highest Score</p>
-			<p>Best Win Margin</p>
-			<p>Most Hits</p>
-		</div>
+			<div id="HighscoreCatagory">
+				<p>Highest Score</p>
+				<p>Best Win Margin</p>
+				<p>Most Hits</p>
+			</div>
+
+		<div id="highscoreoverlay"></div>
 	</div>
 
 	<script type="text/javascript" src="script.js"></script>
