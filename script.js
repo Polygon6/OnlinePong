@@ -400,14 +400,12 @@ rp.addEventListener('mousemove', Rmove);
 //switching between light and dark mode
 function modeToggle () {
 	if (darkmode) {
-		settingsmenu.children[0].innerHTML = 'Background colour: Light mode';
 		darkmode = false;
 		if (cookieprm[1]) {
 			document.cookie = `darkmode = false; sameSite = strict; max-age = ${1000*60*60*24*365}`;
 		}
 	}
 	else {
-		settingsmenu.children[0].innerHTML = 'Background colour: Dark mode';
 		darkmode = true;
 		if (cookieprm[1]) {
 			document.cookie = `darkmode = true; sameSite = strict; max-age = ${1000*60*60*24*365}`;
@@ -1472,15 +1470,22 @@ function Main ()
 	}
 
 	//dark mode
-	if (darkmode) {
-		body.style.backgroundColor = '#302c24';
-		canvas.style.borderColor = '#EEE';
-		canvas.style.backgroundColor = '#302c24';
-	}
-	else {
-		body.style.backgroundColor = 'white';
-		canvas.style.borderColor = 'black';
-		canvas.style.backgroundColor = 'white';
+	if (darkmode !== undefined)
+	{
+		if (JSON.parse(darkmode)) {
+			settingsmenu.children[0].innerHTML = 'Background colour: Dark mode';
+	
+			body.style.backgroundColor = '#302c24';
+			canvas.style.borderColor = '#EEE';
+			canvas.style.backgroundColor = '#302c24';
+		}
+		else {
+			settingsmenu.children[0].innerHTML = 'Background colour: Light mode';
+	
+			body.style.backgroundColor = 'white';
+			canvas.style.borderColor = 'black';
+			canvas.style.backgroundColor = 'white';
+		}
 	}
 
 	//Updating cookie status displays
