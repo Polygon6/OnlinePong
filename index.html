@@ -5,6 +5,29 @@
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 <body>
+	<img src="images/settings_icon.png" id="settingsicon"/>
+	<div id="settingsmenu">
+		<button id="Background_color_button">Background colour: Light mode</button>
+		<button id="Cookies_button">Cookies</button>
+	</div>
+
+	<div id="cookieMenu">
+		<p>Cookie consent</p>
+		<p>This website uses cookies to remember highscores and setting preferences</p>
+		<p>Below are the cookies used and whether they are allowed or not:</p>
+
+		<p>Use cookies to remember highscores</p>
+		<button id="HScookie">Yes</button>
+
+		<p>Use cookies to remember setting preferences</p>
+		<button id="SPcookie">Yes</button>
+
+		<hr/>
+		<p>*Cookies are used to remember your cookie choices</p>
+		<button id="Confirm_cookies">Confirm cookies</button>
+		<hr/>
+	</div>
+
 	<canvas id="canvas"></canvas>
 
 	<div id="left" > <p>Hits: 0.0</p> <p>Misses: 0.0</p> </div>

@@ -9,7 +9,14 @@ var canvas = document.getElementById('canvas');
 var c = canvas.getContext('2d');
 var canvasW = null;
 var canvasH = null;
+var body = document.getElementsByTagName('body')[0];
 var margin = 0;
+var settingsicon = document.getElementById('settingsicon');
+var settingsmenu = document.getElementById('settingsmenu');
+var darkmode = false;
+var cookieMenu = document.getElementById('cookieMenu');
+var cookiebtns =[document.getElementById('HScookie'), document.getElementById('SPcookie'), document.getElementById('Confirm_cookies')];
+var cookieprm = [true, true];
 var Rposition;
 var Lposition;
 var speed = 1;
@@ -53,7 +60,22 @@ var Rmiss = 0;
 var Lmp = 0;	//mp stands for 'Movement Penalty'
 var Rmp = 0;	//mp stands for 'Movement Penalty'
 
+//loading cookie preferences
+if (getCookie('cookieConfig0') !== undefined) {
+	cookieprm[0] = JSON.parse(getCookie('cookieConfig0'));
+	cookieprm[1] = JSON.parse(getCookie('cookieConfig1'));
+}
+
 //setting attributes (look, I know this dosen't make sense but I have to set these first before I can read them for some reason)
+settingsmenu.style.display = 'none';
+
+if (getCookie('cookieConfig0') == undefined) {
+	cookieMenu.style.display = 'initial';
+}
+else {
+	cookieMenu.style.display = 'none';
+}
+
 menu.style.height = '0px';
 menuL.style.width = '0px';
 menuR.style.width = '0px';
@@ -98,10 +120,18 @@ var br = new pongball(null, null);
 //			 ----------------------- declareing functions -----------------------
 //			------------------------                      ------------------------
 
-//updateing the board of highscores
+//updateing the board of highscores <------------------------------------------------------------------------------------------------------------ WORK IN PROGRESS
 function updatehighscore (side, scoretype, value) {
 	if (value > parseInt(highscoreboard.children[side].children[scoretype].innerHTML)) {
 		highscoreboard.children[side].children[scoretype].innerHTML = value.toFixed(0);
+		if (cookieprm[0]) {
+			if (side == 1) {
+				document.cookie	= `${scoretype+10} = ${value}; max-age = ${1000*60*60*24*365}; sameSite = strict`;
+			}
+			else {
+				document.cookie	= `${scoretype} = ${value}; max-age = ${1000*60*60*24*365}; sameSite = strict`;
+			}
+		}	
 	}
 }
 
@@ -133,6 +163,23 @@ function detectC (x, y, cx, cy, cw, ch)
 	}
 	else {
 		return(false);
+	}
+}
+
+//function for getting cookie values given a name, written by chatgpt bc I am tired
+function getCookie (cookieName) {
+	const name = cookieName + "=";
+	const decodedCookie = decodeURIComponent(document.cookie);
+	const cookieArray = decodedCookie.split(';');
+
+	for (let i = 0; i < cookieArray.length; i++) {
+		let cookie = cookieArray[i];
+		while (cookie.charAt(0) === ' ') {
+			cookie = cookie.substring(1);
+		}
+		if (cookie.indexOf(name) === 0) {
+			return cookie.substring(name.length, cookie.length);
+		}
 	}
 }
 
@@ -349,6 +396,55 @@ function Rmove() {
 }
 lp.addEventListener('mousemove', Lmove);
 rp.addEventListener('mousemove', Rmove);
+
+//switching between light and dark mode
+function modeToggle () {
+	if (darkmode) {
+		settingsmenu.children[0].innerHTML = 'Background colour: Light mode';
+		darkmode = false;
+		if (cookieprm[1]) {
+			document.cookie = `darkmode = false; sameSite = strict; max-age = ${1000*60*60*24*365}`;
+		}
+	}
+	else {
+		settingsmenu.children[0].innerHTML = 'Background colour: Dark mode';
+		darkmode = true;
+		if (cookieprm[1]) {
+			document.cookie = `darkmode = true; sameSite = strict; max-age = ${1000*60*60*24*365}`;
+		}
+	}
+}
+settingsmenu.children[0].addEventListener('click', modeToggle);
+
+//opening cookie menu
+function cookieMenuToggle () {
+	if (cookieMenu.style.display == 'none') {
+		cookieMenu.style.display = 'initial';
+	}
+	else {
+		cookieMenu.style.display = 'none';
+		document.cookie = `cookieConfig0 = ${cookieprm[0]}; max-age = ${1000*60*60*24*365}; sameSite = strict`;
+		document.cookie = `cookieConfig1 = ${cookieprm[1]}; max-age = ${1000*60*60*24*365}; sameSite = strict`;
+	}
+}
+settingsmenu.children[1].addEventListener('click', cookieMenuToggle);
+cookiebtns[2].addEventListener('click', cookieMenuToggle);
+
+//changing cookie permissions
+cookiebtns[0].addEventListener('click', function () {cookieprm[0] = !cookieprm[0];});
+cookiebtns[1].addEventListener('click', function () {cookieprm[1] = !cookieprm[1];});
+
+//opening and closing menu
+function settingsToggle () {
+	if (settingsmenu.style.display == 'none') {
+		settingsmenu.style.display = 'initial';
+	}
+	else {
+		settingsmenu.style.display = 'none';
+	}
+}
+settingsicon.addEventListener('click', settingsToggle);
+settingsmenu.children[1].addEventListener('click', settingsToggle);
 
 //			------------------------                                ------------------------
 //			 ----------------------- declareing important functions -----------------------
@@ -1228,10 +1324,37 @@ function DrawFrame ()
 function Main ()
 {
 	if (firstrun === true) {
+		//debug announcement
 		console.log('Main called');
+
+		//setting darkmode by cookies
+		if (cookieprm[1]) {
+			darkmode = getCookie('darkmode');
+		}
+
+		//loading highscores
+		updatehighscore (1, 0, parseInt(getCookie('10')));
+		updatehighscore (1, 1, parseInt(getCookie('11')));
+		updatehighscore (1, 2, parseInt(getCookie('12')));
+		updatehighscore (2, 0, parseInt(getCookie('0')));
+		updatehighscore (2, 1, parseInt(getCookie('1')));
+		updatehighscore (2, 2, parseInt(getCookie('2')));
 	}
 
 	requestAnimationFrame(Main);
+
+	//cookie consent
+	if (!cookieprm[1]) {
+		document.cookie = 'darkmode = false; max-age = 0; sameSite = strict';
+	}
+	if (!cookieprm[0]) {
+		document.cookie = '12 = false; max-age = 0; sameSite = strict';
+		document.cookie = '11 = false; max-age = 0; sameSite = strict';
+		document.cookie = '10 = false; max-age = 0; sameSite = strict';
+		document.cookie = '2 = false; max-age = 0; sameSite = strict';
+		document.cookie = '1 = false; max-age = 0; sameSite = strict';
+		document.cookie = '0 = false; max-age = 0; sameSite = strict';
+	}
 
 	//resizeing canvas to ajust to window
 	canvasW = window.innerWidth/2;
@@ -1348,13 +1471,35 @@ function Main ()
 		}
 	}
 
+	//dark mode
+	if (darkmode) {
+		body.style.backgroundColor = '#302c24';
+		canvas.style.borderColor = '#EEE';
+		canvas.style.backgroundColor = '#302c24';
+	}
+	else {
+		body.style.backgroundColor = 'white';
+		canvas.style.borderColor = 'black';
+		canvas.style.backgroundColor = 'white';
+	}
+
+	//Updating cookie status displays
+	for (var i =  0; i < 2; i++) {
+		if (cookieprm[i]) {
+			cookiebtns[i].innerHTML = 'Yes';
+		}
+		else {
+			cookiebtns[i].innerHTML = 'No';
+		}
+	}
+
 	//calling important functions
 	DrawFrame();
 	Menu_Update();
 	ResizeText();
 }
 
-//calling functionstype
+//calling functions
 Main();
 reset();
 
